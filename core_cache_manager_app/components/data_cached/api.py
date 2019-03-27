@@ -13,10 +13,11 @@ def update_cached_docs_list(data_cached, key_doc_id, dataobject):
 
     """
     # update cached_documents
-    data_cached.cached_documents_dict.append(key_doc_id)
-    data_cached.cached_documents_objects.append(dataobject)
+    if key_doc_id not in data_cached.cached_documents_dict:
+        data_cached.cached_documents_dict.append(key_doc_id)
+        data_cached.cached_documents_objects.append(dataobject)
 
-    upsert(data_cached)
+        upsert(data_cached)
 
 
 def upsert(data_cached):

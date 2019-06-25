@@ -32,7 +32,7 @@ required = [req_link(r) if r.startswith("https://") else r for r in required]
 
 setup(
     name="core_cache_manager_app",
-    version="1.0.0-beta1",
+    version="1.0.0",
     description="Cache management functionalities",
     long_description=long_desc,
     author="NIST EL/ITL Lab",

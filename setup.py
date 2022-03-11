@@ -5,7 +5,7 @@ from re import sub
 
 
 def req_link(external_url):
-    egg_link = sub(r'https://[^=]+=', '', external_url)
+    egg_link = sub(r"https://[^=]+=", "", external_url)
     return "==".join(egg_link.rsplit("-", 1))
 
 
@@ -32,7 +32,7 @@ required = [req_link(r) if r.startswith("https://") else r for r in required]
 
 setup(
     name="core_cache_manager_app",
-    version="1.2.0",
+    version="1.3.0",
     description="Cache management functionalities",
     long_description=long_desc,
     author="NIST EL/ITL Lab",

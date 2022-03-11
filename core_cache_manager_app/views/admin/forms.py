@@ -4,18 +4,19 @@ from django import forms
 
 
 class FormSelectDatabaseObject(forms.Form):
-    """ Form to select which element from the database to cache
-    """
+    """Form to select which element from the database to cache"""
 
-    nodes = forms.ChoiceField(label='nodes',
-                               widget=forms.Select(attrs={"class": "form-control"}),
-                               required=True)
+    nodes = forms.ChoiceField(
+        label="nodes",
+        widget=forms.Select(attrs={"class": "form-control"}),
+        required=True,
+    )
 
     def __init__(self, *args, **kwargs):
         super(FormSelectDatabaseObject, self).__init__(*args, **kwargs)
 
     def set_objects(self, nodes_list, widget="select", empty_label=True):
-        """ Populate the form with the existing Nodes from the tree.
+        """Populate the form with the existing Nodes from the tree.
 
         Args:
             widget: name of the widget used to represent the form (default: select):
@@ -37,7 +38,7 @@ class FormSelectDatabaseObject(forms.Form):
         for element in nodes_list:
             # Get the name of the nodes
             element_name_index = (element.name).index("#")
-            element_name = (element.name)[element_name_index+1:]
+            element_name = (element.name)[element_name_index + 1 :]
             elements_list.append((element.id, element_name))
 
         self.fields["nodes"].choices = elements_list
@@ -46,4 +47,4 @@ class FormSelectDatabaseObject(forms.Form):
         if not empty_label:
             self.fields["nodes"].empty_label = None
         else:
-            self.fields["nodes"].empty_label = 'Select a database object...'
+            self.fields["nodes"].empty_label = "Select a database object..."

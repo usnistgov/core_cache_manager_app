@@ -8,27 +8,24 @@ from core_main_app.commons import exceptions
 
 
 class DataCached(Document):
-    """ DataCached object that has been cached by the system
-    """
+    """DataCached object that has been cached by the system"""
 
     cached_documents_dict = fields.ListField(blank=False)
     cached_documents_objects = fields.ListField(blank=True)
     current_node = fields.StringField(blank=False)
 
-
     @staticmethod
     def get_all():
-        """ Get all DataCached objects.
+        """Get all DataCached objects.
 
         Returns:
 
         """
         return DataCached.objects().all()
 
-
     @staticmethod
     def get_by_id(data_cached_id):
-        """ Return the object with the given id.
+        """Return the object with the given id.
 
         Args:
             data_cached_id:
@@ -45,7 +42,7 @@ class DataCached(Document):
             raise exceptions.ModelError(str(ex))
 
     def save_object(self):
-        """ Custom save.
+        """Custom save.
 
         Returns:
             Saved Instance.

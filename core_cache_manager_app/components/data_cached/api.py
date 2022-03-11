@@ -4,7 +4,7 @@ from core_cache_manager_app.components.data_cached.models import DataCached
 
 
 def update_cached_docs_list(data_cached, key_doc_id, dataobject):
-    """ Save or Updates the DataCached object.
+    """Save or Updates the DataCached object.
 
     Args:
         DataCached object
@@ -21,7 +21,7 @@ def update_cached_docs_list(data_cached, key_doc_id, dataobject):
 
 
 def upsert(data_cached):
-    """ Save or Updates the id the DataCached object.
+    """Save or Updates the id the DataCached object.
 
     Args:
         DataCached object
@@ -33,16 +33,16 @@ def upsert(data_cached):
 
 
 def upsert_data_cache_object(node_name, doc, key_doc_id):
-    """ Create or Updates the cached files of the DataCached object.
+    """Create or Updates the cached files of the DataCached object.
 
-        Args:
-            node_name: represents the name of the Node
-            doc: Data to cache under the current Node
-            key_doc_id: dict of key (for cache) and associated docid that will be used to retrieve the data from the cache
+    Args:
+        node_name: represents the name of the Node
+        doc: Data to cache under the current Node
+        key_doc_id: dict of key (for cache) and associated docid that will be used to retrieve the data from the cache
 
-        Returns:
+    Returns:
 
-        """
+    """
     doc_in_cache = False
     all_data_cached = DataCached.get_all()
     for datacached in all_data_cached:
@@ -54,14 +54,18 @@ def upsert_data_cache_object(node_name, doc, key_doc_id):
             break
     if doc_in_cache == False:
         # Node does not exist => create a list that will contains cached files for this node
-        data = DataCached(cached_documents_dict=[key_doc_id], current_node=node_name, cached_documents_objects=[doc])
+        data = DataCached(
+            cached_documents_dict=[key_doc_id],
+            current_node=node_name,
+            cached_documents_objects=[doc],
+        )
         upsert(data)
 
 
 def clean_datacached_objects():
-    """ Remove all DataCached objects from the database.
+    """Remove all DataCached objects from the database.
 
-        Returns:
+    Returns:
 
-        """
+    """
     return DataCached.delete_objects()
